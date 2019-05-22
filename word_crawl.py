@@ -20,7 +20,7 @@ end_word_entry = tkinter.Entry(window)
 end_word_entry.insert('end', '关键词')
 l4 = tkinter.Label(window, text='文件输出路径', font=('微软雅黑', 10))
 output_path_entry = tkinter.Entry(window)
-output_path_entry.insert('end', 'output')
+output_path_entry.insert('end', 'output.txt')
 
 def hit_me():
     files_dir = input_path_entry.get()
@@ -83,7 +83,9 @@ def work(files_dir, begin_word, end_word):
 
 
 def save_to_txt(target_dict, output_path):
-    with open(output_path+'.txt', 'a+', encoding='utf-8') as f:
+    if '.txt' not in output_path:
+        output_path += '\output.txt'
+    with open(output_path, 'w+', encoding='utf-8') as f:
         for key, value in target_dict.items():
             f.write('file_name:'+key)
             f.write('\n')
